@@ -1,19 +1,12 @@
 package com.example.miro.domain.device.service.command;
 
+import com.example.miro.domain.device.code.DeviceErrorCode;
 import com.example.miro.domain.device.converter.DeviceConverter;
 import com.example.miro.domain.device.dto.req.DeviceReqDTO;
 import com.example.miro.domain.device.dto.res.DeviceResDTO;
 import com.example.miro.domain.device.entity.Device;
+import com.example.miro.domain.device.exception.DeviceException;
 import com.example.miro.domain.device.repository.DeviceRepository;
-import com.example.miro.domain.user.code.UserErrorCode;
-import com.example.miro.domain.user.entity.User;
-import com.example.miro.domain.user.exception.UserException;
-import com.example.miro.domain.user.repository.UserRepository;
-import com.example.miro.domain.userDevice.code.UserDeviceErrorCode;
-import com.example.miro.domain.userDevice.entity.UserDevice;
-import com.example.miro.domain.userDevice.enums.CleanMode;
-import com.example.miro.domain.userDevice.exception.UserDeviceException;
-import com.example.miro.domain.userDevice.repository.UserDeviceRepository;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,40 +17,45 @@ import org.springframework.stereotype.Service;
 public class DeviceCommandServiceImpl implements DeviceCommandService {
 
     private final DeviceRepository deviceRepository;
-    private final UserRepository userRepository;
-    private final UserDeviceRepository userDeviceRepository;
 
+    /* 02-01 기기 등록 */
     @Override
-    public DeviceResDTO.DeviceInfoDTO registerDevice(
-            Long userId,
-            DeviceReqDTO.DeviceRegisterDTO dto
-    ){
-        //1. 유저 조회
-        User user = userRepository.findById(userId)
-                .orElseThrow(() -> new UserException(UserErrorCode.USER_ID_NOT_FOUND));
+    public DeviceResDTO.DeviceInfoDTO createDevice(Long adminId, DeviceReqDTO.CreateDeviceDTO request) {
 
-        //2. 기기 조회하고 없으면 생성 - orElseGet() = 값이 없으면 필요할 때 그제서야 함수로 생성
-        Device device = deviceRepository.findBySerialNumber(dto.getSerialNumber())
-                .orElseGet( () -> deviceRepository.save(DeviceConverter.toDevice(dto)));
+        if (deviceRepository.existsBySerialNumber(request.getSerialNumber())) {
+            throw new DeviceException(DeviceErrorCode.DEVICE_ALREADY_REGISTERED);
+        }
 
-        //3. 이미 사용자 기기에 등록된거인지 체크
-        userDeviceRepository.findByUserAndDevice(user, device).ifPresent(userDevice -> {
-            throw new UserDeviceException(UserDeviceErrorCode.USER_DEVICE_ALREADY_REGISTERED);
-        });
+        Device device = DeviceConverter.toDevice(request);
+        deviceRepository.save(device);
 
-        // 4. UserDevice 생성
-        UserDevice userDevice = userDeviceRepository.save(
-                UserDevice.builder()
-                        .user(user)
-                        .device(device)
-                        .defaultMode(CleanMode.AUTO)
-                        .autoCleanEnabled(false)
-                        .isInitialized(false)
-                        .build()
-        );
-
-        return DeviceConverter.toDeviceInfoDTO(device, userDevice);
+        return DeviceConverter.toDeviceInfoDTO(device);
     }
 
+    /* 02-04 기기 수정 */
+    @Override
+    public void updateDevice(Long adminId, Long deviceId, DeviceReqDTO.UpdateDeviceDTO request) {
 
+        Device device = deviceRepository.findById(deviceId)
+                .orElseThrow(() -> new DeviceException(DeviceErrorCode.DEVICE_NOT_FOUND));
+
+        device = Device.builder()
+                .id(device.getId())
+                .serialNumber(device.getSerialNumber())
+                .modelName(request.getModelName())
+                .firmwareVersion(request.getFirmwareVersion())
+                .build();
+
+        deviceRepository.save(device);
+    }
+
+    /* 02-05 기기 삭제 */
+    @Override
+    public void deleteDevice(Long adminId, Long deviceId) {
+
+        Device device = deviceRepository.findById(deviceId)
+                .orElseThrow(() -> new DeviceException(DeviceErrorCode.DEVICE_NOT_FOUND));
+
+        deviceRepository.delete(device);
+    }
 }

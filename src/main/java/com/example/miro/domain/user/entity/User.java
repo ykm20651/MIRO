@@ -1,9 +1,13 @@
 package com.example.miro.domain.user.entity;
 
 import com.example.miro.domain.user.enums.Role;
+import com.example.miro.domain.userDevice.entity.UserDevice;
 import com.example.miro.global.common.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,6 +34,9 @@ public class User extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false, length = 20)
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<UserDevice> userDevices = new ArrayList<>();
 
     public static User createUser(String email, String encodedPassword, String name) {
         return User.builder()
