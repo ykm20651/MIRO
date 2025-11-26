@@ -8,9 +8,11 @@ import com.example.miro.domain.user.exception.UserException;
 import com.example.miro.domain.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class UserQueryServiceImpl implements UserQueryService {
 
     private final UserRepository userRepository;

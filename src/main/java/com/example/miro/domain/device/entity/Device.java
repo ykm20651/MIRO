@@ -17,9 +17,6 @@ public class Device extends BaseEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "firmwareId", nullable = false)
-    private Long firmwareId;
-
     @Column(name = "serialNumber", nullable = false, length = 255)
     private String serialNumber;
 

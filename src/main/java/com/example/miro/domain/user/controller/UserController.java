@@ -41,7 +41,7 @@ public class UserController {
             @AuthenticationPrincipal CustomPrincipal principal
     ){
         UserResDTO.UserDetailDTO response = userQueryService.getUserInfo(principal.getUserId());
-        return ApiResponse.onSuccess(UserSuccessCode.USER_LOGIN_SUCCESS, response);
+        return ApiResponse.onSuccess(UserSuccessCode.USER_FETCH_SUCCESS, response);
     }
 
 
