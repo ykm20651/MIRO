@@ -37,4 +37,10 @@ public class Inquiry extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false, length = 20)
     private InquiryStatus status;
+
+    public void updateInquiry(String title, String message) {
+        this.title = title;
+        this.message = message;
+    }
+
 }

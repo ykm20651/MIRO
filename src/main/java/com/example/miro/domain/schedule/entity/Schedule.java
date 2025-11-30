@@ -37,4 +37,13 @@ public class Schedule extends BaseEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "mode", nullable = false, length = 20)
     private CleanMode mode;
+
+    public void updateSchedule(RepeatType repeatType, String day, String time, CleanMode mode) {
+
+        this.repeatType = repeatType;
+        this.day = day;
+        this.time = time;
+        this.mode = mode;
+    }
+
 }

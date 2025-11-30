@@ -8,16 +8,19 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "02 Device", description = "02번대 기기(Device) API")
 public interface DeviceControllerDocs {
 
     /* 02-01 기기 등록 (ADMIN만 가능) */
     @Operation(
             summary = "02-01 기기 등록 (ADMIN)",
+            operationId = "02-01",
             description = "시리얼번호/모델명/펌웨어 버전을 기반으로 기기를 등록합니다. (ADMIN 권한 필요)"
     )
     @ApiResponses({
@@ -46,6 +49,7 @@ public interface DeviceControllerDocs {
     /* 02-02 기기 상세 조회 */
     @Operation(
             summary = "02-02 기기 상세 조회",
+            operationId = "02-02",
             description = "특정 기기 상세 정보를 조회합니다."
     )
     @ApiResponses({
@@ -69,6 +73,7 @@ public interface DeviceControllerDocs {
     /* 02-03 전체 기기 목록 조회 */
     @Operation(
             summary = "02-03 전체 기기 목록 조회",
+            operationId = "02-03",
             description = "등록된 전체 기기 목록을 조회합니다."
     )
     @ApiResponses({
@@ -87,6 +92,7 @@ public interface DeviceControllerDocs {
     /* 02-04 기기 정보 수정 (ADMIN) */
     @Operation(
             summary = "02-04 기기 정보 수정 (ADMIN)",
+            operationId = "02-04",
             description = "기기의 모델명/펌웨어 버전을 수정합니다. (ADMIN 권한 필요)"
     )
     @ApiResponses({
@@ -115,6 +121,7 @@ public interface DeviceControllerDocs {
     /* 02-05 기기 삭제 (ADMIN) */
     @Operation(
             summary = "02-05 기기 삭제 (ADMIN)",
+            operationId = "02-05",
             description = "기기 정보를 삭제합니다. (ADMIN 권한 필요)"
     )
     @ApiResponses({
