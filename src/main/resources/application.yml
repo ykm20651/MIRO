@@ -18,3 +18,8 @@ spring:
   jwt:
     secret: ${JWT_SECRET}
     expiration-ms: ${JWT_EXPIRATION_MS}
+
+springdoc:
+  swagger-ui:
+    tags-sorter: alpha
+    operations-sorter: "((a, b) => a.get('operationId').localeCompare(b.get('operationId')))"

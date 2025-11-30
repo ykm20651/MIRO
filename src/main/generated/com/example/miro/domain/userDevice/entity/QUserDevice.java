@@ -42,6 +42,8 @@ public class QUserDevice extends EntityPathBase<UserDevice> {
 
     public final DateTimePath<java.time.LocalDateTime> lastConnectedAt = createDateTime("lastConnectedAt", java.time.LocalDateTime.class);
 
+    public final ListPath<com.example.miro.domain.schedule.entity.Schedule, com.example.miro.domain.schedule.entity.QSchedule> schedules = this.<com.example.miro.domain.schedule.entity.Schedule, com.example.miro.domain.schedule.entity.QSchedule>createList("schedules", com.example.miro.domain.schedule.entity.Schedule.class, com.example.miro.domain.schedule.entity.QSchedule.class, PathInits.DIRECT2);
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
 

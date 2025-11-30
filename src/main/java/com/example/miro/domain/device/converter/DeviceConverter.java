@@ -20,7 +20,7 @@ public class DeviceConverter {
         return DeviceResDTO.DeviceInfoDTO.builder()
                 .id(device.getId())
                 .serialNumber(device.getSerialNumber())
-                .modelName(device.getModelName())
+                .modelName(String.valueOf(device.getModelName()))
                 .firmwareVersion(device.getFirmwareVersion())
                 .build();
     }

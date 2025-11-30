@@ -9,4 +9,8 @@ import java.util.Optional;
 @Repository
 public interface DeviceRepository extends JpaRepository<Device,Long> {
     boolean  existsBySerialNumber(String SerialNumber);
+    Optional<Device> findByModelName(String modelName);
+    Optional<Device> findBySerialNumber(String serialNumber);
+
+
 }

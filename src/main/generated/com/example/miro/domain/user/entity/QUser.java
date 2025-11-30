@@ -9,6 +9,7 @@ import com.querydsl.core.types.dsl.StringTemplate;
 import com.querydsl.core.types.PathMetadata;
 import com.querydsl.core.annotations.Generated;
 import com.querydsl.core.types.Path;
+import com.querydsl.core.types.dsl.PathInits;
 
 
 /**
@@ -39,6 +40,8 @@ public class QUser extends EntityPathBase<User> {
 
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updatedAt = _super.updatedAt;
+
+    public final ListPath<com.example.miro.domain.userDevice.entity.UserDevice, com.example.miro.domain.userDevice.entity.QUserDevice> userDevices = this.<com.example.miro.domain.userDevice.entity.UserDevice, com.example.miro.domain.userDevice.entity.QUserDevice>createList("userDevices", com.example.miro.domain.userDevice.entity.UserDevice.class, com.example.miro.domain.userDevice.entity.QUserDevice.class, PathInits.DIRECT2);
 
     public QUser(String variable) {
         super(User.class, forVariable(variable));

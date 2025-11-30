@@ -27,8 +27,6 @@ public class QDevice extends EntityPathBase<Device> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createdAt = _super.createdAt;
 
-    public final NumberPath<Long> firmwareId = createNumber("firmwareId", Long.class);
-
     public final StringPath firmwareVersion = createString("firmwareVersion");
 
     public final NumberPath<Long> id = createNumber("id", Long.class);

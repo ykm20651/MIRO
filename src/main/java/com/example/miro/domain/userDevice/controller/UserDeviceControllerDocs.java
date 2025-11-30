@@ -8,16 +8,18 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Tag(name = "03 UserDevice", description = "03번대 사용자 기기(UserDevice) API")
 public interface UserDeviceControllerDocs {
 
     /* 03-01 사용자 기기 등록 */
-    @Operation(summary = "03-01 사용자 기기 등록", description = "로그인한 사용자의 계정에 새로운 기기를 등록합니다.")
+    @Operation(summary = "03-01 사용자 기기 등록", operationId = "03-01", description = "로그인한 사용자의 계정에 새로운 기기를 등록합니다.")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "201",
@@ -36,7 +38,7 @@ public interface UserDeviceControllerDocs {
     );
 
     /* 03-02 사용자 기기 목록 조회 */
-    @Operation(summary = "03-02 내 기기 목록 조회", description = "로그인한 사용자가 등록한 모든 기기를 조회합니다.")
+    @Operation(summary = "03-02 내 기기 목록 조회", operationId = "03-02", description = "로그인한 사용자가 등록한 모든 기기를 조회합니다.")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "200",
@@ -49,7 +51,7 @@ public interface UserDeviceControllerDocs {
     );
 
     /* 03-03 사용자 기기 상세 조회 */
-    @Operation(summary = "03-03 내 기기 상세 조회", description = "로그인한 사용자가 소유한 특정 기기의 상세 정보를 조회합니다.")
+    @Operation(summary = "03-03 내 기기 상세 조회", operationId = "03-03",description = "로그인한 사용자가 소유한 특정 기기의 상세 정보를 조회합니다.")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(
                     responseCode = "200",
@@ -67,7 +69,7 @@ public interface UserDeviceControllerDocs {
     );
 
     /* 03-04 사용자 기기 설정 수정 */
-    @Operation(summary = "03-04 사용자 기기 설정 수정", description = "기본 청소 모드, 자동 청소 여부 등 기기 설정을 수정합니다.")
+    @Operation(summary = "03-04 사용자 기기 설정 수정", operationId = "03-04",description = "기본 청소 모드, 자동 청소 여부 등 기기 설정을 수정합니다.")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "수정 성공 (UDEV200)"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "기기 없음 (UDEV404)")
@@ -80,7 +82,7 @@ public interface UserDeviceControllerDocs {
     );
 
     /* 03-05 사용자 기기 삭제 */
-    @Operation(summary = "03-05 사용자 기기 삭제", description = "연동된 사용자 기기를 계정에서 삭제합니다.")
+    @Operation(summary = "03-05 사용자 기기 삭제", operationId = "03-05",description = "연동된 사용자 기기를 계정에서 삭제합니다.")
     @ApiResponses({
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "200", description = "삭제 성공 (UDEV204)"),
             @io.swagger.v3.oas.annotations.responses.ApiResponse(responseCode = "404", description = "기기 없음 (UDEV404)")

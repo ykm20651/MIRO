@@ -11,7 +11,8 @@ public enum InquirySuccessCode implements BaseSuccessCode {
 
     INQUIRY_CREATED(HttpStatus.CREATED, "INQ201_1", "문의 작성 완료"),
     INQUIRY_LIST_FETCHED(HttpStatus.OK, "INQ200_1", "문의 목록 조회 성공"),
-    INQUIRY_DETAIL_FETCHED(HttpStatus.OK, "INQ200_2", "문의 상세 조회 성공");
+    INQUIRY_DETAIL_FETCHED(HttpStatus.OK, "INQ200_2", "문의 상세 조회 성공"),
+    INQUIRY_DELETED(HttpStatus.NO_CONTENT, "INQ204_1", "문의 삭제 성공");
 
     private final HttpStatus status;
     private final String code;
