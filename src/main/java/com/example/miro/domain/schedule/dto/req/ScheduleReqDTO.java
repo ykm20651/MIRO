@@ -28,6 +28,8 @@ public class ScheduleReqDTO {
 
         @NotNull(message = "mode는 필수 값입니다.")
         private CleanMode mode;
+
+        private String memo;
     }
 
     /* 04-04 스케줄 수정 */
@@ -46,5 +48,7 @@ public class ScheduleReqDTO {
 
         @NotNull(message = "mode는 필수 값입니다.")
         private CleanMode mode;
+
+        private String memo;
     }
 }

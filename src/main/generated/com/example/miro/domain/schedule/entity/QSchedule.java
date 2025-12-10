@@ -34,6 +34,8 @@ public class QSchedule extends EntityPathBase<Schedule> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
+    public final StringPath memo = createString("memo");
+
     public final EnumPath<com.example.miro.domain.userDevice.enums.CleanMode> mode = createEnum("mode", com.example.miro.domain.userDevice.enums.CleanMode.class);
 
     public final EnumPath<com.example.miro.domain.schedule.enums.RepeatType> repeatType = createEnum("repeatType", com.example.miro.domain.schedule.enums.RepeatType.class);
