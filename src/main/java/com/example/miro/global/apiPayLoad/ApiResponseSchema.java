@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @Getter
 @Schema(description = "공통 API 응답 형식")
-public class ApiResponseSchema<T> {
+abstract class ApiResponseSchema<T> {
 
     @Schema(description = "요청 성공 여부", example = "true")
     private boolean isSuccess;
