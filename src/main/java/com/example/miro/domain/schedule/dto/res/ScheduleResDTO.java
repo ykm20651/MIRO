@@ -19,6 +19,7 @@ public class ScheduleResDTO {
         private String day;
         private String time;
         private CleanMode mode;
+        private String memo;
     }
 
 }

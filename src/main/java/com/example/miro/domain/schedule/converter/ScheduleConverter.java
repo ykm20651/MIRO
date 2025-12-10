@@ -14,6 +14,7 @@ public class ScheduleConverter {
                 .day(request.getDay())
                 .time(request.getTime())
                 .mode(request.getMode())
+                .memo(request.getMemo())
                 .build();
     }
 
@@ -25,6 +26,7 @@ public class ScheduleConverter {
                 .day(schedule.getDay())
                 .time(schedule.getTime())
                 .mode(schedule.getMode())
+                .memo(schedule.getMemo())
                 .build();
     }
 }

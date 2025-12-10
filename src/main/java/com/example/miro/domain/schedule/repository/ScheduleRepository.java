@@ -18,7 +18,8 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
             s.repeatType,
             s.day,
             s.time,
-            s.mode
+            s.mode,
+            s.memo
         )
         from Schedule s
         join s.userDevice ud
@@ -38,7 +39,8 @@ public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
             s.repeatType,
             s.day,
             s.time,
-            s.mode
+            s.mode,
+            s.memo
         )
         from Schedule s
         join s.userDevice ud

@@ -34,6 +34,9 @@ public class Schedule extends BaseEntity {
     @Column(name = "time", nullable = false)
     private String time;
 
+    @Column(name = "memo", nullable = true)
+    private String memo;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "mode", nullable = false, length = 20)
     private CleanMode mode;

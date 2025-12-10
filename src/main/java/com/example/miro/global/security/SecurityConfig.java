@@ -62,6 +62,8 @@ public class SecurityConfig {
                         // API 문서(Swagger) 허용
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
 
+                        // OAuth Redirect 허용
+                        .requestMatchers("/oauth/**").permitAll()
                         // 그 외 모든 요청은 인증 필요
                         .anyRequest().authenticated()
                 );
@@ -107,11 +109,5 @@ public class SecurityConfig {
         return source;
 
     }
-
-
-
-
-
-
 
 }
