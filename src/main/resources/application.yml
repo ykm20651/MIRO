@@ -1,6 +1,6 @@
 spring:
   application:
-    name: umc_9th_spring
+    name: oasis
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -23,3 +23,12 @@ springdoc:
   swagger-ui:
     tags-sorter: alpha
     operations-sorter: "((a, b) => a.get('operationId').localeCompare(b.get('operationId')))"
+
+oauth:
+  kakao:
+    client-id: 0283c27599aef19ed65bcde74a5cb98b
+    client-secret: iW13MsbFX7RyLS9MCXf9tXHTBbxjKjQ5
+    authorize-uri: https://kauth.kakao.com/oauth/authorize
+    redirect-uri: http://localhost:8080/oauth/kakao/callback
+    token-uri: https://kauth.kakao.com/oauth/token
+    user-info-uri: https://kapi.kakao.com/v2/user/me

@@ -39,6 +39,18 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             @NonNull FilterChain filterChain
     ) throws ServletException, IOException {
 
+        System.out.println("[JWT FILTER] Request URI = " + request.getRequestURI());
+
+        String path = request.getRequestURI();
+
+        // 0. OAuth 로그인 과정은 JWT 검사 대상에서 제외
+        if (path.startsWith("/oauth/")) {
+            System.out.println("[JWT FILTER] SKIP OAuth URL");
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+
         //1. 요청에서 Authorization 헤더 추출
         String token = resolveToken(request);
 
